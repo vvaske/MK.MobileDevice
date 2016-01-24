@@ -4,4 +4,4 @@ MK Industries collaboration - A powerful, versatile library providing multiple i
 Requires certain components protected by Apple's license, so please install iTunes, or at least Apple Mobile Device Support and Apple Application Support.
 
 ##Documentation
-Documentation is available on [the github page](http://exaphaser.github.io/MK.MobileDevice)
+Documentation is available on [the github page](http://exaphaser.github.io/MK.MobileDevice/docs)
