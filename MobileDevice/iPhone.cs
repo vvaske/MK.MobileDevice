@@ -2,6 +2,7 @@
 namespace MK.MobileDevice
 {
     using System;
+    using System.IO;
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
@@ -418,6 +419,90 @@ namespace MK.MobileDevice
             {
                 throw new iPhoneException("Installation Proxy encountered an error ({0})", ipe);
             }
+        }
+        
+        public void InstallApplication(string ipaFile)
+        {
+        	iDevice id = Devices[0];
+        	IntPtr currDevice;
+        	string currUdid = id.Udid;
+        	//Console.Write("Opening new device handle...");
+        	LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);        	
+        	Console.WriteLine(returnCode);
+        	IntPtr ldService;
+            IntPtr lockdownClient;
+            //Console.Write("Opening new lockdown handle...");
+			Lockdown.LockdownError lockdownReturnCode = Lockdown.Start(currDevice, out lockdownClient, out ldService);
+			//Console.WriteLine(lockdownReturnCode);
+			//Console.Write("Starting Installation Proxy...");
+			IntPtr ipxClient;
+			IntPtr ipxSvc;
+			var ipe = InstallationProxy.instproxy_client_start_service(currDevice, out ipxClient, out ipxSvc);
+			//Console.WriteLine(ipe);
+			
+			string PKG_PATH = "PublicStaging";
+			string APPARCH_PATH = "ApplicationArchives";
+			
+			//Console.Write("Preparing AFC...");
+			IntPtr afcC;
+			var afce = AFC.afc_client_start_service(currDevice, out afcC, "MK-iMD");
+			//Console.WriteLine(afce);
+			//Console.Write("Querying AFC...");
+			IntPtr afcInfo;
+			afce = AFC.afc_get_file_info(afcC, PKG_PATH, out afcInfo);
+			//Console.WriteLine(afce);
+			if (afce == AFC.AFCError.AFC_E_OBJECT_NOT_FOUND)
+			{
+				//Console.Write("Creating Directory...");
+				afce = AFC.afc_make_directory(afcC, PKG_PATH);
+				//Console.WriteLine(afce);
+			}
+			
+			IntPtr clientOpts = InstallationProxy.instproxy_client_options_new();
+			int errp = 0;
+			var ipa = File.Open(ipaFile, FileMode.Open, FileAccess.ReadWrite);
+			var zarc = new System.IO.Compression.ZipArchive(ipa);
+			string appName = zarc.Entries.Where(zae => zae.FullName.EndsWith(".app/")).ToList()[0].FullName;			
+			//Console.WriteLine("Found {0} in IPA archive",appName);
+			string infoPlistPath = appName+"Info.plist";
+			var infoPlist = LibPlist.GetPtrPlistFromFile(zarc.GetEntry(infoPlistPath).Open());
+			//get data
+			string bundleX = ExtractStringFromPlist(infoPlist, "CFBundleExecutable");
+			string bundleid = ExtractStringFromPlist(infoPlist, "CFBundleIdentifier");
+			
+			//Console.WriteLine("Found {0} iOS binary in app {1}",bundleX, bundleid);
+			
+			string sinfname = "Payload/"+bundleX+".app/SC_Info/"+bundleid+".sinf";
+			var sinfS = zarc.GetEntry(sinfname);
+			bool hasSinf = sinfS != null;
+			if (hasSinf)
+			{
+				var sinfSt = sinfS.Open();
+				var sinf = LibPlist.plist_new_data(ReadBytesOfStream(sinfSt), (ulong)sinfSt.Length);
+				//Console.WriteLine("Found SINF inside app.");
+			}
+			IntPtr meta = IntPtr.Zero;;
+			var iMTD = zarc.GetEntry("Payload/iTunesMetadata.plist");
+			bool hasiMTD = iMTD != null;
+			if (hasiMTD)
+			{
+				var fSt = iMTD.Open();
+				meta = LibPlist.plist_new_data(ReadBytesOfStream(fSt), (ulong)fSt.Length);
+			}
+			//copy archive
+			zarc.Dispose();
+			//Console.Write("Uploading IPA...");
+			string pkgname = PKG_PATH + "/" + bundleid;
+			AFC.copyToDevice(afcC, ipaFile, pkgname);
+			//Console.WriteLine("Done.");
+			
+			InstallationProxy.instproxy_client_options_add(clientOpts, "CFBundleIdentifier", bundleid, IntPtr.Zero);
+			if (hasiMTD)
+				InstallationProxy.instproxy_client_options_add(clientOpts, "iTunesMetadata", meta, IntPtr.Zero);
+			//Console.Write("Attempting to install...");
+			ipe = InstallationProxy.instproxy_install(ipxClient, pkgname, clientOpts, IntPtr.Zero, IntPtr.Zero);
+			//Console.WriteLine(ipe);
+        	Lockdown.FreeClient(lockdownClient);
         }
 
         public void UninstallApplication(string applicationBundleIdentifier)
@@ -1610,6 +1695,26 @@ namespace MK.MobileDevice
             }
 
 
+        }
+        public static byte[] ReadBytesOfStream(Stream input)
+		{
+		    byte[] buffer = new byte[16*1024];
+		    using (MemoryStream ms = new MemoryStream())
+		    {
+		        int read;
+		        while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+		        {
+		            ms.Write(buffer, 0, read);
+		        }
+		        return ms.ToArray();
+		    }
+		}
+        public static string ExtractStringFromPlist(IntPtr infoPlist, string key)
+        {
+        	var valPtr = PlistNative.plist_dict_get_item(infoPlist, key);
+			string val=null;
+			PlistNative.plist_get_string_val(valPtr, ref val);
+			return val;
         }
     }
 }
