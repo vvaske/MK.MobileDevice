@@ -502,7 +502,6 @@ namespace imobileDeviceiDevice
         static byte[] BINARY_PLIST = new[] { (byte)'b', (byte)'p', (byte)'l', (byte)'i', (byte)'s', (byte)'t', (byte)'0', (byte)'0' };
 
         private IntPtr m_Node;
-        public string test;
 
         public LibPlist()
         {
@@ -534,6 +533,29 @@ namespace imobileDeviceiDevice
                 IntPtr plistPtr;
                 plist_from_xml(data, data.Length, out plistPtr);
                 return new LibPlist(plistPtr);
+            }
+        }
+        
+        public static IntPtr GetPtrPlistFromFile(Stream strm)
+        {
+            byte[] data;
+            using (var memStream = new MemoryStream())
+            {
+                strm.CopyTo(memStream);
+                data = memStream.ToArray();
+            }
+
+            if (memcmp(data, BINARY_PLIST, 8) == 0)
+            {
+                IntPtr plistPtr;
+                plist_from_bin(data, data.Length, out plistPtr);
+                return plistPtr;
+            }
+            else
+            {
+                IntPtr plistPtr;
+                plist_from_xml(data, data.Length, out plistPtr);
+                return plistPtr;
             }
         }
 

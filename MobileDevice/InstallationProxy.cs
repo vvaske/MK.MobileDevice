@@ -98,13 +98,16 @@ namespace MK.MobileDevice
         public static extern InstproxyError instproxy_uninstall(IntPtr instProxyClient, string applicationId, IntPtr clientOptions, IntPtr nullArg, IntPtr nullArg2);
         
         [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
-        public static extern InstproxyError instproxy_install(IntPtr instProxyClient, out IntPtr pkgPath, IntPtr clientOptions, IntPtr nullArg, IntPtr callback);        
+        public static extern InstproxyError instproxy_install(IntPtr instProxyClient, string pkgPath, IntPtr clientOptions, IntPtr callback, IntPtr nullArg);        
         
         [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
-        static extern IntPtr instproxy_client_options_new();
+        public static extern IntPtr instproxy_client_options_new();
 
         [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
-        static extern void instproxy_client_options_add(IntPtr clientOptions, string key, string value, IntPtr zero);
+        public static extern void instproxy_client_options_add(IntPtr clientOptions, string key, string value, IntPtr zero);
+        
+        [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void instproxy_client_options_add(IntPtr clientOptions, string key, IntPtr value, IntPtr zero);
         #endregion
 
         public static InstproxyError GetApplications(IntPtr installProxyClient, out List<iOSApplication> appList)
