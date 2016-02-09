@@ -419,6 +419,80 @@ namespace MK.MobileDevice
                 throw new iPhoneException("Installation Proxy encountered an error ({0})", ipe);
             }
         }
+
+        public string ArchiveApplicationOnDevice(string bundleId)
+        {
+            string arcPath = null;
+            iDevice id = Devices[0];
+            IntPtr currDevice;
+            string currUdid = id.Udid;
+            //Console.Write("Opening new device handle...");
+            LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);
+            //Console.WriteLine(returnCode);
+            IntPtr ldService;
+            IntPtr lockdownClient;
+            //Console.Write("Opening new lockdown handle...");
+            Lockdown.LockdownError lockdownReturnCode = Lockdown.Start(currDevice, out lockdownClient, out ldService);
+            //Console.WriteLine(lockdownReturnCode);
+            //Console.Write("Starting Installation Proxy...");
+            IntPtr ipxClient;
+            IntPtr ipxSvc;
+            var ipe = InstallationProxy.instproxy_client_start_service(currDevice, out ipxClient, out ipxSvc);
+            //Console.WriteLine(ipe);
+            string APPARCH_PATH = "ApplicationArchives";
+            //Console.Write("Preparing AFC...");
+            IntPtr afcC;
+            var afce = AFC.afc_client_start_service(currDevice, out afcC, "MK-iMD");
+            //Console.WriteLine(afce);
+            //Console.Write("Querying AFC...");
+            IntPtr afcInfo;
+            afce = AFC.afc_get_file_info(afcC, APPARCH_PATH, out afcInfo);
+            //Console.WriteLine(afce);
+            if (afce == AFC.AFCError.AFC_E_OBJECT_NOT_FOUND)
+            {
+                //Console.Write("Creating Directory...");
+                afce = AFC.afc_make_directory(afcC, APPARCH_PATH);
+                //Console.WriteLine(afce);
+            }
+
+            IntPtr client_opts = InstallationProxy.instproxy_client_options_new();
+            InstallationProxy.instproxy_client_options_add(client_opts, "ArchiveType", "ApplicationOnly", IntPtr.Zero);
+            string outputFn = APPARCH_PATH + "/" + bundleId + ".zip";
+            //Console.Write("Archiving...");
+            ipe = InstallationProxy.instproxy_archive(ipxClient, bundleId, client_opts, IntPtr.Zero, IntPtr.Zero);
+            //Console.WriteLine(ipe);
+            if (ipe == InstallationProxy.InstproxyError.INSTPROXY_E_SUCCESS)
+                arcPath = outputFn;
+            Lockdown.FreeClient(lockdownClient);
+            LibiMobileDevice.idevice_free(currDevice);
+            return arcPath;
+        }
+
+        public void RemoveApplicationArchive(string bundleId)
+        {
+            iDevice id = Devices[0];
+            IntPtr currDevice;
+            string currUdid = id.Udid;
+            //Console.Write("Opening new device handle...");
+            LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);
+            //Console.WriteLine(returnCode);
+            IntPtr ldService;
+            IntPtr lockdownClient;
+            //Console.Write("Opening new lockdown handle...");
+            Lockdown.LockdownError lockdownReturnCode = Lockdown.Start(currDevice, out lockdownClient, out ldService);
+            //Console.WriteLine(lockdownReturnCode);
+            //Console.Write("Starting Installation Proxy...");
+            IntPtr ipxClient;
+            IntPtr ipxSvc;
+            var ipe = InstallationProxy.instproxy_client_start_service(currDevice, out ipxClient, out ipxSvc);
+            //Console.WriteLine(ipe);
+            IntPtr r_client_opts = InstallationProxy.instproxy_client_options_new();
+            //Console.Write("Removing Archive...");
+            ipe = InstallationProxy.instproxy_archive(ipxClient, bundleId, r_client_opts, IntPtr.Zero, IntPtr.Zero);
+            //Console.WriteLine(ipe);
+            Lockdown.FreeClient(lockdownClient);
+            LibiMobileDevice.idevice_free(currDevice);
+        }
         
         public void InstallApplication(string ipaFile)
         {
@@ -427,7 +501,7 @@ namespace MK.MobileDevice
         	string currUdid = id.Udid;
         	//Console.Write("Opening new device handle...");
         	LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);        	
-        	Console.WriteLine(returnCode);
+        	//Console.WriteLine(returnCode);
         	IntPtr ldService;
             IntPtr lockdownClient;
             //Console.Write("Opening new lockdown handle...");

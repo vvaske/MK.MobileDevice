@@ -99,6 +99,12 @@ namespace MK.MobileDevice
         
         [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
         public static extern InstproxyError instproxy_install(IntPtr instProxyClient, string pkgPath, IntPtr clientOptions, IntPtr callback, IntPtr nullArg);        
+  
+        [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
+        public static extern InstproxyError instproxy_archive(IntPtr instProxyClient, string bundleId, IntPtr clientOptions, IntPtr callback, IntPtr zero);        
+
+        [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
+        public static extern InstproxyError instproxy_remove_archive(IntPtr instProxyClient, string bundleId, IntPtr clientOptions, IntPtr callback, IntPtr zero);        
         
         [DllImport(LibiMobileDevice.LibimobiledeviceDllPath, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr instproxy_client_options_new();
