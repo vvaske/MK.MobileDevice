@@ -11,7 +11,7 @@ Here is a short list containing SOME (there are a LOT more features) of the many
 - Remotely reboot, shut down, enter/exit recovery mode
 - Deactivate device
 - SSH Access (with Jailbreak)
-- Manage Applications
+- Manage Applications (Install, Uninstall, Archive, Restore, Remove Archives, etc...)
 - Manage home screen layout
 - Rename device name
 - Extract metadata such as phone number, UDID, IMEI, etc.
