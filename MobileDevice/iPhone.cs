@@ -1,24 +1,23 @@
 //dd
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.ExceptionServices;
+using System.Text;
+using MK.MobileDevice;
+using imobileDeviceiDevice;
+using System.Linq;
+using MK.Plist;
+using System.Xml;
+using System.Security;
+using System.Xml.Linq;
+using recoverysaver;
+using rebootpwn;
 namespace MK.MobileDevice
 {
-    using System;
-    using System.IO;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
-    using System.Runtime.ExceptionServices;
-    using System.Text;
-    using MK.MobileDevice;
-    using imobileDeviceiDevice;
-    using System.Linq;
-    using MK.Plist;
-    using System.Xml;
-    using System.Security;
-    using System.Xml.Linq;
-    using recoverysaver;
-    using rebootpwn;
-
     public class iPhone
     {
         private bool connected;
@@ -465,10 +464,16 @@ namespace MK.MobileDevice
 			string appName = zarc.Entries.Where(zae => zae.FullName.EndsWith(".app/")).ToList()[0].FullName;			
 			//Console.WriteLine("Found {0} in IPA archive",appName);
 			string infoPlistPath = appName+"Info.plist";
-			var infoPlist = LibPlist.GetPtrPlistFromFile(zarc.GetEntry(infoPlistPath).Open());
-			//get data
-			string bundleX = ExtractStringFromPlist(infoPlist, "CFBundleExecutable");
-			string bundleid = ExtractStringFromPlist(infoPlist, "CFBundleIdentifier");
+			
+			var iPlsSt = ReadBytesOfStream(zarc.GetEntry(infoPlistPath).Open());			
+			var infoPlistPtr = LibPlist.GetPtrPlistFromData(iPlsSt);
+			
+	        var infoPlistXdoc = LibiMobileDevice.PlistToXml(infoPlistPtr);
+	        var infoPlist = new PList(infoPlistXdoc, true);
+	        //get data
+	
+	        string bundleX = infoPlist["CFBundleExecutable"];
+	        string bundleid = infoPlist["CFBundleIdentifier"];
 			
 			//Console.WriteLine("Found {0} iOS binary in app {1}",bundleX, bundleid);
 			
@@ -1709,13 +1714,6 @@ namespace MK.MobileDevice
 		        return ms.ToArray();
 		    }
 		}
-        public static string ExtractStringFromPlist(IntPtr infoPlist, string key)
-        {
-        	var valPtr = PlistNative.plist_dict_get_item(infoPlist, key);
-			string val=null;
-			PlistNative.plist_get_string_val(valPtr, ref val);
-			return val;
-        }
     }
 }
 

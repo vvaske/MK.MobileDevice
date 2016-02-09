@@ -536,15 +536,18 @@ namespace imobileDeviceiDevice
             }
         }
         
-        public static IntPtr GetPtrPlistFromFile(Stream strm)
+        public static IntPtr GetPtrPlistFromData(byte[] data)
         {
+            /*
             byte[] data;
             using (var memStream = new MemoryStream())
             {
                 strm.CopyTo(memStream);
                 data = memStream.ToArray();
+                string sdata = System.Text.Encoding.UTF8.GetString(data);
             }
-
+            */
+            string sdata = System.Text.Encoding.UTF8.GetString(data);
             if (memcmp(data, BINARY_PLIST, 8) == 0)
             {
                 IntPtr plistPtr;
