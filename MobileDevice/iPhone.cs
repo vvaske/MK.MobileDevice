@@ -218,7 +218,7 @@ namespace MK.MobileDevice
                 this.wasAFC2 = true;
             }
 
-            AFC.afc_client_start_service(this.iPhoneHandle, out this.hAFC, "MK.MobileDevice");
+            var afce = AFC.afc_client_start_service(this.iPhoneHandle, out this.hAFC, "MK.MobileDevice");
             Lockdown.FreeClient(ldCli);
             Lockdown.FreeService(ldSvc);
             this.hAFC_original = this.hAFC;
@@ -969,7 +969,15 @@ namespace MK.MobileDevice
 
         public bool CopyFileFromDevice(string computerFile, string deviceFile)
         {
-            return AFC.copyToDisk(this.hAFC, deviceFile, computerFile) == AFC.AFCError.AFC_E_SUCCESS;
+            iDevice id = Devices[0];
+            IntPtr currDevice;
+            string currUdid = id.Udid;
+            LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);
+            IntPtr ldService;
+            IntPtr lockdownClient;
+            IntPtr afcC;
+            var afce = AFC.afc_client_start_service(currDevice, out afcC, "MK-iMD");
+            return AFC.copyToDisk(afcC, deviceFile, computerFile) == AFC.AFCError.AFC_E_SUCCESS;
         }
 
         public void DeleteDirectory(string path, bool recursive)
