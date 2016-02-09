@@ -495,7 +495,7 @@ namespace MK.MobileDevice
             LibiMobileDevice.idevice_free(currDevice);
         }
         
-        public void InstallApplication(string ipaFile)
+        public bool InstallApplication(string ipaFile)
         {
         	iDevice id = Devices[0];
         	IntPtr currDevice;
@@ -583,6 +583,7 @@ namespace MK.MobileDevice
 			ipe = InstallationProxy.instproxy_install(ipxClient, pkgname, clientOpts, IntPtr.Zero, IntPtr.Zero);
 			//Console.WriteLine(ipe);
         	Lockdown.FreeClient(lockdownClient);
+        	return ipe == InstallationProxy.InstproxyError.INSTPROXY_E_SUCCESS;
         }
 
         public void UninstallApplication(string applicationBundleIdentifier)
@@ -1412,7 +1413,7 @@ namespace MK.MobileDevice
             ConnectEventHandler connect = this.Connect;
             if (connect != null)
             {
-                connect(this, args);
+                connect(this, args);                
             }
 
         }
