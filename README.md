@@ -1,7 +1,7 @@
 # MK.MobileDevice
-MK Industries collaboration - A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices, written in C#.
+MK Industries collaboration - A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices over USB and WiFi (using both Apple drivers and custom drivers for Linux recompiled for Windows) written in C#. (Still being actively developed)
 
-##Features
+## Features
 Use a simple API to do all kinds of cool things with your iDevice, over a USB cable or wirelessly (with iTunes WiFi Sync).
 
 Here is a short list containing SOME (there are a LOT more features) of the many features of this library
@@ -17,7 +17,7 @@ Here is a short list containing SOME (there are a LOT more features) of the many
 - Extract metadata such as phone number, UDID, IMEI, etc.
 - And more!
 
-Requires certain components protected by Apple's license, so please install iTunes, or at least Apple Mobile Device Support and Apple Application Support.
+Requires certain components protected by Apple's EULA, so please install iTunes, or at least Apple Mobile Device Support and Apple Application Support.
 
 ##Documentation
 Documentation is available on [the github page](http://exaphaser.github.io/MK.MobileDevice/docs)
