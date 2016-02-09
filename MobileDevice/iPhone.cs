@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -873,10 +874,38 @@ namespace MK.MobileDevice
             PList pl = new PList(this.RequestProperties(null), true);
             return Convert.ToString(pl[key]);
         }
-        public string RequestProperty(string domain, string key)
+        public dynamic RequestProperty<T>(string domain, string key)
         {
-            PList pl = new PList(this.RequestProperties(domain), true);
-            return Convert.ToString(pl[key]);
+            //PList pl = new PList(this.RequestProperties(domain), true);
+            //return Convert.ToString(pl[key]);
+            iDevice id = Devices[0];
+            IntPtr currDevice;
+            string currUdid = id.Udid;
+            LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);
+            IntPtr ldService;
+            IntPtr lockdownClient;
+            Lockdown.LockdownError lockdownReturnCode = Lockdown.Start(currDevice, out lockdownClient, out ldService);
+            if (lockdownReturnCode == Lockdown.LockdownError.LOCKDOWN_E_SUCCESS || IsWifiConnect)
+            {
+                IntPtr resultPlist;
+                Lockdown.LockdownError lderror = Lockdown.lockdownd_get_value(lockdownClient, domain, key, out resultPlist);
+                XDocument xd = LibiMobileDevice.PlistToXml(resultPlist);
+                Lockdown.FreeClient(lockdownClient);
+                Lockdown.FreeService(ldService);
+                LibiMobileDevice.idevice_free(currDevice);
+                XElement[] elems = xd.Root.Elements().ToArray();
+                string sVal = elems[0].Name.LocalName;
+                var typeConv = TypeDescriptor.GetConverter(typeof(T));
+                dynamic eVal = (T)typeConv.ConvertFromInvariantString(sVal);
+                return eVal;
+            }
+            else
+            {
+                Lockdown.FreeClient(lockdownClient);
+                Lockdown.FreeService(ldService);
+                LibiMobileDevice.idevice_free(currDevice);
+                throw new iPhoneException("Lockdown Encountered an Error {0}", lockdownReturnCode);
+            }
         }
 
         public bool ConnectViaHouseArrest(string appId)
@@ -1708,6 +1737,14 @@ namespace MK.MobileDevice
             }
         }
 
+        public bool FindMyiPhoneEnabled
+        {
+            get
+            {
+                return RequestProperty<bool>("com.apple.fmip", "IsAssociated");
+            }
+        }
+
         public bool IsJailbreak
         {
             get
@@ -1720,7 +1757,7 @@ namespace MK.MobileDevice
                 {
                     return false;
                 }
-                return this.FileExists("/Applications");
+                return this.FileExists("/Applications/Cydia.app/");
             }
         }
 
