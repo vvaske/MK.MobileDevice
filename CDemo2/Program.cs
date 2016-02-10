@@ -16,7 +16,7 @@ namespace CDemo2
 			Console.WriteLine("Connected.");
 			bool available = iph.IsConnected;
 			Console.WriteLine(available);
-			string dn = iph.RequestProperty(null, "DeviceName");
+			string dn = iph.RequestProperty<string>(null, "DeviceName");
 			Console.WriteLine("Device: "+dn);
 			Console.Write("Enter new name: ");
 			string nn = Console.ReadLine();

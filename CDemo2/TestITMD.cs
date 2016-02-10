@@ -63,6 +63,7 @@ namespace CDemo2
             Console.WriteLine("libimobiledevice.dll detected device attached to host.");
             Console.WriteLine("Device Locked: {0}", args.IsLocked);
             //Console.WriteLine("Uninstalled.");
+            Console.WriteLine("FMIP: {0}",mdv.FindMyiPhoneEnabled);
         }
 
         private static void Tai_Connect(object sender, MK.MobileDevice.TAI.ConnectEventArgs args)
