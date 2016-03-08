@@ -21,5 +21,7 @@ Here is a short list containing SOME (there are a LOT more features) of the many
 
 Requires certain components protected by Apple's EULA, so please install iTunes, or at least Apple Mobile Device Support and Apple Application Support.
 
+Avaulable on NuGet.
+
 ##Documentation
 Documentation is available on [the github page](http://exaphaser.github.io/MK.MobileDevice
