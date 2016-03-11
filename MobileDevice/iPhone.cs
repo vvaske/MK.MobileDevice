@@ -137,7 +137,7 @@ namespace MK.MobileDevice
             IntPtr ldService;
             IntPtr lockdownClient;
             Lockdown.LockdownError lde = Lockdown.Start(currDevice, out lockdownClient, out ldService);
-            if (lde!=Lockdown.LockdownError.LOCKDOWN_E_SUCCESS)
+            if (lde != Lockdown.LockdownError.LOCKDOWN_E_SUCCESS)
             {
                 Lockdown.FreeClient(lockdownClient);
                 Lockdown.FreeService(ldService);
@@ -494,96 +494,96 @@ namespace MK.MobileDevice
             Lockdown.FreeClient(lockdownClient);
             LibiMobileDevice.idevice_free(currDevice);
         }
-        
+
         public bool InstallApplication(string ipaFile)
         {
-        	iDevice id = Devices[0];
-        	IntPtr currDevice;
-        	string currUdid = id.Udid;
-        	//Console.Write("Opening new device handle...");
-        	LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);        	
-        	//Console.WriteLine(returnCode);
-        	IntPtr ldService;
+            iDevice id = Devices[0];
+            IntPtr currDevice;
+            string currUdid = id.Udid;
+            //Console.Write("Opening new device handle...");
+            LibiMobileDevice.iDeviceError returnCode = LibiMobileDevice.NewDevice(out currDevice, currUdid);
+            //Console.WriteLine(returnCode);
+            IntPtr ldService;
             IntPtr lockdownClient;
             //Console.Write("Opening new lockdown handle...");
-			Lockdown.LockdownError lockdownReturnCode = Lockdown.Start(currDevice, out lockdownClient, out ldService);
-			//Console.WriteLine(lockdownReturnCode);
-			//Console.Write("Starting Installation Proxy...");
-			IntPtr ipxClient;
-			IntPtr ipxSvc;
-			var ipe = InstallationProxy.instproxy_client_start_service(currDevice, out ipxClient, out ipxSvc);
-			//Console.WriteLine(ipe);
-			
-			string PKG_PATH = "PublicStaging";
-			string APPARCH_PATH = "ApplicationArchives";
-			
-			//Console.Write("Preparing AFC...");
-			IntPtr afcC;
-			var afce = AFC.afc_client_start_service(currDevice, out afcC, "MK-iMD");
-			//Console.WriteLine(afce);
-			//Console.Write("Querying AFC...");
-			IntPtr afcInfo;
-			afce = AFC.afc_get_file_info(afcC, PKG_PATH, out afcInfo);
-			//Console.WriteLine(afce);
-			if (afce == AFC.AFCError.AFC_E_OBJECT_NOT_FOUND)
-			{
-				//Console.Write("Creating Directory...");
-				afce = AFC.afc_make_directory(afcC, PKG_PATH);
-				//Console.WriteLine(afce);
-			}
-			
-			IntPtr clientOpts = InstallationProxy.instproxy_client_options_new();
-			int errp = 0;
-			var ipa = File.Open(ipaFile, FileMode.Open, FileAccess.ReadWrite);
-			var zarc = new System.IO.Compression.ZipArchive(ipa);
-			string appName = zarc.Entries.Where(zae => zae.FullName.EndsWith(".app/")).ToList()[0].FullName;			
-			//Console.WriteLine("Found {0} in IPA archive",appName);
-			string infoPlistPath = appName+"Info.plist";
-			
-			var iPlsSt = ReadBytesOfStream(zarc.GetEntry(infoPlistPath).Open());			
-			var infoPlistPtr = LibPlist.GetPtrPlistFromData(iPlsSt);
-			
-	        var infoPlistXdoc = LibiMobileDevice.PlistToXml(infoPlistPtr);
-	        var infoPlist = new PList(infoPlistXdoc, true);
-	        //get data
-	
-	        string bundleX = infoPlist["CFBundleExecutable"];
-	        string bundleid = infoPlist["CFBundleIdentifier"];
-			
-			//Console.WriteLine("Found {0} iOS binary in app {1}",bundleX, bundleid);
-			
-			string sinfname = "Payload/"+bundleX+".app/SC_Info/"+bundleid+".sinf";
-			var sinfS = zarc.GetEntry(sinfname);
-			bool hasSinf = sinfS != null;
-			if (hasSinf)
-			{
-				var sinfSt = sinfS.Open();
-				var sinf = LibPlist.plist_new_data(ReadBytesOfStream(sinfSt), (ulong)sinfSt.Length);
-				//Console.WriteLine("Found SINF inside app.");
-			}
-			IntPtr meta = IntPtr.Zero;;
-			var iMTD = zarc.GetEntry("Payload/iTunesMetadata.plist");
-			bool hasiMTD = iMTD != null;
-			if (hasiMTD)
-			{
-				var fSt = iMTD.Open();
-				meta = LibPlist.plist_new_data(ReadBytesOfStream(fSt), (ulong)fSt.Length);
-			}
-			//copy archive
-			zarc.Dispose();
-			//Console.Write("Uploading IPA...");
-			string pkgname = PKG_PATH + "/" + bundleid;
-			AFC.copyToDevice(afcC, ipaFile, pkgname);
-			//Console.WriteLine("Done.");
-			
-			InstallationProxy.instproxy_client_options_add(clientOpts, "CFBundleIdentifier", bundleid, IntPtr.Zero);
-			if (hasiMTD)
-				InstallationProxy.instproxy_client_options_add(clientOpts, "iTunesMetadata", meta, IntPtr.Zero);
-			//Console.Write("Attempting to install...");
-			ipe = InstallationProxy.instproxy_install(ipxClient, pkgname, clientOpts, IntPtr.Zero, IntPtr.Zero);
-			//Console.WriteLine(ipe);
-        	Lockdown.FreeClient(lockdownClient);
-        	return ipe == InstallationProxy.InstproxyError.INSTPROXY_E_SUCCESS;
+            Lockdown.LockdownError lockdownReturnCode = Lockdown.Start(currDevice, out lockdownClient, out ldService);
+            //Console.WriteLine(lockdownReturnCode);
+            //Console.Write("Starting Installation Proxy...");
+            IntPtr ipxClient;
+            IntPtr ipxSvc;
+            var ipe = InstallationProxy.instproxy_client_start_service(currDevice, out ipxClient, out ipxSvc);
+            //Console.WriteLine(ipe);
+
+            string PKG_PATH = "PublicStaging";
+            string APPARCH_PATH = "ApplicationArchives";
+
+            //Console.Write("Preparing AFC...");
+            IntPtr afcC;
+            var afce = AFC.afc_client_start_service(currDevice, out afcC, "MK-iMD");
+            //Console.WriteLine(afce);
+            //Console.Write("Querying AFC...");
+            IntPtr afcInfo;
+            afce = AFC.afc_get_file_info(afcC, PKG_PATH, out afcInfo);
+            //Console.WriteLine(afce);
+            if (afce == AFC.AFCError.AFC_E_OBJECT_NOT_FOUND)
+            {
+                //Console.Write("Creating Directory...");
+                afce = AFC.afc_make_directory(afcC, PKG_PATH);
+                //Console.WriteLine(afce);
+            }
+
+            IntPtr clientOpts = InstallationProxy.instproxy_client_options_new();
+            int errp = 0;
+            var ipa = File.Open(ipaFile, FileMode.Open, FileAccess.ReadWrite);
+            var zarc = new System.IO.Compression.ZipArchive(ipa);
+            string appName = zarc.Entries.Where(zae => zae.FullName.EndsWith(".app/")).ToList()[0].FullName;
+            //Console.WriteLine("Found {0} in IPA archive",appName);
+            string infoPlistPath = appName + "Info.plist";
+
+            var iPlsSt = ReadBytesOfStream(zarc.GetEntry(infoPlistPath).Open());
+            var infoPlistPtr = LibPlist.GetPtrPlistFromData(iPlsSt);
+
+            var infoPlistXdoc = LibiMobileDevice.PlistToXml(infoPlistPtr);
+            var infoPlist = new PList(infoPlistXdoc, true);
+            //get data
+
+            string bundleX = infoPlist["CFBundleExecutable"];
+            string bundleid = infoPlist["CFBundleIdentifier"];
+
+            //Console.WriteLine("Found {0} iOS binary in app {1}",bundleX, bundleid);
+
+            string sinfname = "Payload/" + bundleX + ".app/SC_Info/" + bundleid + ".sinf";
+            var sinfS = zarc.GetEntry(sinfname);
+            bool hasSinf = sinfS != null;
+            if (hasSinf)
+            {
+                var sinfSt = sinfS.Open();
+                var sinf = LibPlist.plist_new_data(ReadBytesOfStream(sinfSt), (ulong)sinfSt.Length);
+                //Console.WriteLine("Found SINF inside app.");
+            }
+            IntPtr meta = IntPtr.Zero; ;
+            var iMTD = zarc.GetEntry("Payload/iTunesMetadata.plist");
+            bool hasiMTD = iMTD != null;
+            if (hasiMTD)
+            {
+                var fSt = iMTD.Open();
+                meta = LibPlist.plist_new_data(ReadBytesOfStream(fSt), (ulong)fSt.Length);
+            }
+            //copy archive
+            zarc.Dispose();
+            //Console.Write("Uploading IPA...");
+            string pkgname = PKG_PATH + "/" + bundleid;
+            AFC.copyToDevice(afcC, ipaFile, pkgname);
+            //Console.WriteLine("Done.");
+
+            InstallationProxy.instproxy_client_options_add(clientOpts, "CFBundleIdentifier", bundleid, IntPtr.Zero);
+            if (hasiMTD)
+                InstallationProxy.instproxy_client_options_add(clientOpts, "iTunesMetadata", meta, IntPtr.Zero);
+            //Console.Write("Attempting to install...");
+            ipe = InstallationProxy.instproxy_install(ipxClient, pkgname, clientOpts, IntPtr.Zero, IntPtr.Zero);
+            //Console.WriteLine(ipe);
+            Lockdown.FreeClient(lockdownClient);
+            return ipe == InstallationProxy.InstproxyError.INSTPROXY_E_SUCCESS;
         }
 
         public void UninstallApplication(string applicationBundleIdentifier)
@@ -942,6 +942,15 @@ namespace MK.MobileDevice
             return ret;
         }
 
+        public void EnableWifiConnection()
+        {
+            this.SetProperty("com.apple.mobile.wireless_lockdown", "EnableWifiConnections", "true");
+        }
+        public void DisableWifiConnection()
+        {
+            this.SetProperty("com.apple.mobile.wireless_lockdown", "EnableWifiConnections", "false");
+        }
+
         public void ReconnectAFC()
         {
             if (this.hAFC != this.hAFC_original)
@@ -1023,23 +1032,23 @@ namespace MK.MobileDevice
         private unsafe void doConstruction()
         {
             /*
-			IntPtr voidPtr;
-			this.dnc = new DeviceNotificationCallback(this.NotifyCallback);
-			this.drn1 = new DeviceRestoreNotificationCallback(this.DfuConnectCallback);
-			this.drn2 = new DeviceRestoreNotificationCallback(this.RecoveryConnectCallback);
-			this.drn3 = new DeviceRestoreNotificationCallback(this.DfuDisconnectCallback);
-			this.drn4 = new DeviceRestoreNotificationCallback(this.RecoveryDisconnectCallback);
-			int num = MobileDevice.AMDeviceNotificationSubscribe(this.dnc, 0, 0, 0, out voidPtr);
-			if (num != 0)
-			{
-			    throw new Exception("AMDeviceNotificationSubscribe failed with error " + num);
-			}
-			num = MobileDevice.AMRestoreRegisterForDeviceNotifications(this.drn1, this.drn2, this.drn3, this.drn4, 0, null);
-			if (num != 0)
-			{
-			    throw new Exception("AMRestoreRegisterForDeviceNotifications failed with error " + num);
-			}
-			*/
+            IntPtr voidPtr;
+            this.dnc = new DeviceNotificationCallback(this.NotifyCallback);
+            this.drn1 = new DeviceRestoreNotificationCallback(this.DfuConnectCallback);
+            this.drn2 = new DeviceRestoreNotificationCallback(this.RecoveryConnectCallback);
+            this.drn3 = new DeviceRestoreNotificationCallback(this.DfuDisconnectCallback);
+            this.drn4 = new DeviceRestoreNotificationCallback(this.RecoveryDisconnectCallback);
+            int num = MobileDevice.AMDeviceNotificationSubscribe(this.dnc, 0, 0, 0, out voidPtr);
+            if (num != 0)
+            {
+                throw new Exception("AMDeviceNotificationSubscribe failed with error " + num);
+            }
+            num = MobileDevice.AMRestoreRegisterForDeviceNotifications(this.drn1, this.drn2, this.drn3, this.drn4, 0, null);
+            if (num != 0)
+            {
+                throw new Exception("AMRestoreRegisterForDeviceNotifications failed with error " + num);
+            }
+            */
             IntPtr udata;
 
             IMDDeviceSubscribeCallbackDelegate = new LibiMobileDevice.LibIMDDeviceNotificationCallback(_NotifyCallback);
@@ -1057,7 +1066,7 @@ namespace MK.MobileDevice
             //MobileDevice.AMRestorePerformDFURestore(this.iPhoneHandle);
         }
 
-        
+
 
         public unsafe bool FileExists(string path)
         {
@@ -1293,7 +1302,7 @@ namespace MK.MobileDevice
         public unsafe string[] GetFiles(string path)
         {
             //throw new NotImplementedException();
-            
+
             if (!this.connected)
             {
                 throw new Exception("Not connected to phone");
@@ -1413,7 +1422,7 @@ namespace MK.MobileDevice
             ConnectEventHandler connect = this.Connect;
             if (connect != null)
             {
-                connect(this, args);                
+                connect(this, args);
             }
 
         }
@@ -1715,27 +1724,27 @@ namespace MK.MobileDevice
                 return RequestProperty("InternationalMobileEquipmentIdentity");
             }
         }
-        
+
         bool getIsWifiConnect()
         {
-        	int validate = ValidatePairing();
-        	int pair = Pair();
-        	if ((pair==-256&&(validate==0||validate==-8))|| validate == -8)
-        	{
-        		return true;
-        	}
-        	else
-        	{
-        		return false;
-        	}
+            int validate = ValidatePairing();
+            int pair = Pair();
+            if ((pair == -256 && (validate == 0 || validate == -8)) || validate == -8)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        
+
         public bool IsWifiConnect
         {
-        	get
-        	{
-        		return getIsWifiConnect();
-        	}
+            get
+            {
+                return getIsWifiConnect();
+            }
         }
 
         public bool IsConnected
@@ -1822,18 +1831,18 @@ namespace MK.MobileDevice
 
         }
         public static byte[] ReadBytesOfStream(Stream input)
-		{
-		    byte[] buffer = new byte[16*1024];
-		    using (MemoryStream ms = new MemoryStream())
-		    {
-		        int read;
-		        while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-		        {
-		            ms.Write(buffer, 0, read);
-		        }
-		        return ms.ToArray();
-		    }
-		}
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
     }
 }
 

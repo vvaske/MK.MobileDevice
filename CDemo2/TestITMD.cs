@@ -33,12 +33,12 @@ namespace CDemo2
                 Console.WriteLine(e.Message);
             }
             tai = new TAIiPhone();
-            
+
             mdv.Connect += Mdv_Connect;
             mdv.HostAttached += Mdv_HostAttached;
             iph.Connect += Iph_Connect;
             tai.Connect += Tai_Connect;
-            
+
             lliph.HostAttached += Lliph_HostAttached;
 
             iph.DfuConnect += Iph_DfuConnect;
@@ -63,12 +63,14 @@ namespace CDemo2
             Console.WriteLine("libimobiledevice.dll detected device attached to host.");
             Console.WriteLine("Device Locked: {0}", args.IsLocked);
             //Console.WriteLine("Uninstalled.");
-            Console.WriteLine("FMIP: {0}",mdv.FindMyiPhoneEnabled);
+            Console.WriteLine("FMIP: {0}", mdv.FindMyiPhoneEnabled);
+            Console.WriteLine("PurpleBuddy GetValue: {0}", mdv.RequestProperty<string>("com.apple.PurpleBuddy", "SetupState"));
+            mdv.EnableWifiConnection();
         }
 
         private static void Tai_Connect(object sender, MK.MobileDevice.TAI.ConnectEventArgs args)
         {
-            
+
         }
 
         private static void Iph_DfuConnect(object sender, EventArgs e)
@@ -87,17 +89,20 @@ namespace CDemo2
 
         private static void Iph_Connect(object sender, ITMDConnectEventArgs args)
         {
+
             Console.WriteLine("iTunesMobileDevice.dll Connected to " + iph.DeviceName);
             string dn = iph.DeviceName;
             string pn = iph.ProductName;
             string pv = iph.ProductVersion;
             string infoS = String.Format("connected to: {0} ({1}, iOS {2})", dn, pn, pv);
+            Console.WriteLine("FMIP AMDeviceCopyValue: {0}", iph.RequestProperty("com.apple.fmip", "IsAssociated"));
+            /*
             Console.WriteLine(infoS);
             //com.apple.mobile.battery
-            Console.WriteLine("AMDeviceCopyValue: {0}", iph.RequestProperty("com.apple.PurpleBuddy", "SetupState"));
             //Console.WriteLine("AMDeviceCopyValue: {0}", iph.DeviceiTunesHasConnected);
             Console.WriteLine("Enabling WiFi: {0}",iph.EnableWiFiConnection());
             //Console.WriteLine("Disabling WiFi: {0}",iph.DisableWiFiConnection());
+            */
         }
     }
 }
