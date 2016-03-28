@@ -64,7 +64,8 @@ namespace CDemo2
             Console.WriteLine("Device Locked: {0}", args.IsLocked);
             //Console.WriteLine("Uninstalled.");
             Console.WriteLine("FMIP: {0}", mdv.FindMyiPhoneEnabled);
-            Console.WriteLine("PurpleBuddy GetValue: {0}", mdv.RequestProperty<string>("com.apple.PurpleBuddy", "SetupState"));
+            //Console.WriteLine("PurpleBuddy GetValue: {0}", mdv.RequestProperty<string>("com.apple.PurpleBuddy", "SetupState"));
+            var pb = mdv.RequestProperties("com.apple.PurpleBuddy");
             mdv.EnableWifiConnection();
         }
 
