@@ -3,6 +3,11 @@ MK.MobileDevice - A powerful, versatile library providing multiple interfaces to
 
 Driver DLLs for both 32-bit and 64-bit Windows are included, and you can build your very own set of native DLLs from the [libimobiledevice-win64](https://github.com/exaphaser/libimobiledevice-win64) project.
 
+## Support
+**Yes, I am willing to provide support, please contact me or post your question/issue in [Issues](https://github.com/exaphaser/MK.MobileDevice/issues)**
+
+Thanks!
+
 ## Features
 Use a simple API to do all kinds of cool things with your iDevice, over a USB cable or wirelessly (with iTunes WiFi Sync).
 
