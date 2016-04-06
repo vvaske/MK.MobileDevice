@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+# SharpDevelop 5.1
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MK Battery Wizard", "MK Battery Wizard\MK Battery Wizard.csproj", "{02156CD9-66B1-4C7C-98EC-98234166B1B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency", "Dependency", "{DC7D3B04-DF47-4EC0-97A7-BD9F91DA0306}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileDevice", "..\MobileDevice\MobileDevice.csproj", "{76A1D31E-7501-4711-9EC6-F768533B60D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02156CD9-66B1-4C7C-98EC-98234166B1B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02156CD9-66B1-4C7C-98EC-98234166B1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02156CD9-66B1-4C7C-98EC-98234166B1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02156CD9-66B1-4C7C-98EC-98234166B1B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A1D31E-7501-4711-9EC6-F768533B60D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A1D31E-7501-4711-9EC6-F768533B60D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A1D31E-7501-4711-9EC6-F768533B60D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A1D31E-7501-4711-9EC6-F768533B60D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{76A1D31E-7501-4711-9EC6-F768533B60D6} = {DC7D3B04-DF47-4EC0-97A7-BD9F91DA0306}
+	EndGlobalSection
+EndGlobal
