@@ -1,12 +1,12 @@
 # MK.MobileDevice
 MK.MobileDevice - A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices over USB and WiFi (using both Apple drivers and custom drivers for Linux recompiled for Windows) written in C#. (Still being actively developed)
 
+# [Get Started](#install)
+
 Driver DLLs for both 32-bit and 64-bit Windows are included, and you can build your very own set of native DLLs from the [libimobiledevice-win64](https://github.com/exaphaser/libimobiledevice-win64) project.
 
 ## Support
 **Yes, I am willing to provide support, please contact me or post your question/issue in [Issues](https://github.com/exaphaser/MK.MobileDevice/issues)**
-
-# [Get Started](#install)
 
 Thanks!
 
