@@ -6,6 +6,8 @@ Driver DLLs for both 32-bit and 64-bit Windows are included, and you can build y
 ## Support
 **Yes, I am willing to provide support, please contact me or post your question/issue in [Issues](https://github.com/exaphaser/MK.MobileDevice/issues)**
 
+# [Get Started](#install)
+
 Thanks!
 
 # Getting set up [See Install](#install)
