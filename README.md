@@ -8,6 +8,8 @@ Driver DLLs for both 32-bit and 64-bit Windows are included, and you can build y
 
 Thanks!
 
+# Getting set up [See Install](#install)
+
 ## Features
 Use a simple API to do all kinds of cool things with your iDevice, over a USB cable or wirelessly (with iTunes WiFi Sync).
 
@@ -30,3 +32,7 @@ Avaulable on NuGet.
 
 ##Documentation
 Documentation is available on [the github page](http://exaphaser.github.io/MK.MobileDevice
+
+#Install
+- A relatively recent version of MK.MobileDevice is available on (NuGet)[https://www.nuget.org/packages/MK.MobileDevice/] However, this is not guaranteed to be the latest version.
+- I recommend either cloning the repository ([how](https://help.github.com/articles/cloning-a-repository/)) or downloading the artifacts from [AppVeyor](https://ci.appveyor.com/project/0xFireball/mk-mobiledevice)
