@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace imobileDeviceiDevice
+namespace MK.MobileDevice
 {
     public enum PlistType
     {
