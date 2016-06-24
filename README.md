@@ -2,6 +2,7 @@
 MK.MobileDevice - A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices over USB and WiFi (using both Apple drivers and custom drivers for Linux recompiled for Windows) written in C#. (Still being actively developed)
 
 - Yes, it's open-source, licensed under the `GPLv3`; please see `LICENSE` for more information.
+- It's GPL because there are too many closed source programs that have similar functionality. I wanted an open community library and some open source tools.
 
 # [Get Started](#install)
 
