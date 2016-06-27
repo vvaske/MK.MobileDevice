@@ -936,7 +936,8 @@ namespace MK.MobileDevice
                 if (ret)
                     this.hAFC = HA_afc;
             }
-            HouseArrest.house_arrest_client_free(hHA);
+            //Don't free the HA client because doing so makes the new AFC client fail.
+            //HouseArrest.house_arrest_client_free(hHA);
             Lockdown.FreeService(ldService);
             Lockdown.FreeClient(lockdownClient);
             return ret;
