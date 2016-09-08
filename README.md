@@ -39,6 +39,7 @@ Avaulable on NuGet.
 Documentation is available on [the github page](http://exaphaser.github.io/MK.MobileDevice
 
 #Install
-- A relatively recent version of MK.MobileDevice is available on (NuGet)[https://www.nuget.org/packages/MK.MobileDevice/] However, this is not guaranteed to be the latest version.
-- I recommend either cloning the repository ([how](https://help.github.com/articles/cloning-a-repository/)) or downloading the artifacts from [AppVeyor](https://ci.appveyor.com/project/0xFireball/mk-mobiledevice)
+- An **outdated** version of MK.MobileDevice is available on (NuGet)[https://www.nuget.org/packages/MK.MobileDevice/]!
+- I recommend either **cloning the repository** ([how](https://help.github.com/articles/cloning-a-repository/)) or **downloading the artifacts from [AppVeyor](https://ci.appveyor.com/project/0xFireball/mk-mobiledevice).**
+
 ## Once you have obtained a copy, proceed to the [Wiki](https://github.com/exaphaser/MK.MobileDevice/wiki) for more information.
