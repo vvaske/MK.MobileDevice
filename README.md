@@ -19,7 +19,7 @@ Here is a short list containing SOME (there are a LOT more features) of the many
 - Connect to device - USB and even **Wirelessly**!!!
 - **Remotely reboot, shut down, enter/exit recovery mode!**
 - Manage iCloud activation lock!
-- Activate a **hidden Semi-Sleep/Lock state** (not yet tested on iOS 10, but it may work!)
+- Activate a [hidden Semi-Sleep/Lock state](https://0xfireball.github.io/MK.MobileDevice/html/9b17a6a7-9c58-c770-230c-5981aeca32f6.htm) (not yet tested on iOS 10, but it may work!)
 - Manage Applications (Install, Uninstall, Archive, Restore, Remove Archives, etc...)
 - Manage home screen layout (extract layouts, send layouts)!
 - Rename device name!
