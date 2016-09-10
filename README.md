@@ -13,7 +13,7 @@ Here is a short list containing SOME (there are a LOT more features) of the many
 - **Full AFC access in the `/private/var/mobile/Media` directory** - transfer files back and forth!
 - Full developer disk image support and mounting (EVEN ON WINDOWS/Linux!!!!)
 - Take screenshots remotely! (you must mount developer disk first)
-- *Connect to device WIRELESSLY*
+- Connect to device - USB and even **Wirelessly**!!!
 - **Remotely reboot, shut down, enter/exit recovery mode!**
 - Manage iCloud activation lock!
 - Manage Applications (Install, Uninstall, Archive, Restore, Remove Archives, etc...)
