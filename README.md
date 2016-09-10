@@ -6,6 +6,9 @@ MK.MobileDevice - A powerful, versatile library providing multiple interfaces to
 - Yes, it's open-source, licensed under the `GPLv3`; please see `LICENSE` for more information.
 - It's GPL because there are too many closed source programs (iMazing, iExplorer, Syncios, etc.) that have similar functionality. I wanted an open community library and some open source tools.
 
+## Announcements
+- **iOS 10 ready!** - As soon as the new iPhones are released, support will be added for them too! Right now, all devices from the very first iPad/iPhone to the iPad Pros and 6s are supported!
+
 ## Features
 Use a **Simple, concise API** to do all kinds of cool things with your iDevice, over a USB cable or **wirelessly** (with iTunes WiFi Sync). You can use it as a sort of remote-control iTunes or something. Make your device do your bidding with **MK.MobileDevice**!
 
