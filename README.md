@@ -7,7 +7,7 @@ MK.MobileDevice - A powerful, versatile library providing multiple interfaces to
 - It's GPL because there are too many closed source programs (iMazing, iExplorer, Syncios, etc.) that have similar functionality. I wanted an open community library and some open source tools.
 
 ## Features
-Use a simple API to do all kinds of cool things with your iDevice, over a USB cable or wirelessly (with iTunes WiFi Sync).
+Use a **Simple, concise API** to do all kinds of cool things with your iDevice, over a USB cable or **wirelessly** (with iTunes WiFi Sync). You can use it as a sort of remote-control iTunes or something. Make your device do your bidding with **MK.MobileDevice**!
 
 Here is a short list containing SOME (there are a LOT more features) of the many features of this library
 - **Full AFC access in the `/private/var/mobile/Media` directory** - transfer files back and forth!
