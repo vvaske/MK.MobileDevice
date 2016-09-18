@@ -1,5 +1,7 @@
 <img src="icon.png" width="120" height="120" />
-### The best iOS device communication library! Absolutely free and open source!
+### The best iOS device communication library! Absolutely free and open source! Program your iOS device to do your bidding! Create awesome automation programs that detect your iPhone wirelessly!
+
+
 # MK.MobileDevice
 MK.MobileDevice - A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices over USB and WiFi (using both Apple drivers and custom drivers for Linux recompiled for Windows) written in C#. (Still being actively developed)
 
