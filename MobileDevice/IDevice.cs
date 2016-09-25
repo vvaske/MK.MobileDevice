@@ -26,7 +26,12 @@ namespace imobileDeviceiDevice
             { "iPhone7,2", "iPhone 6" },
             { "iPhone8,1", "iPhone 6S" },
             { "iPhone8,2", "iPhone 6S Plus" },
-			
+	    { "iPhone8,4", "iPhone SE" },
+            { "iPhone9,1", "iPhone 7" },
+            { "iPhone9,2", "iPhone 7 Plus" },
+            { "iPhone9,3", "iPhone 7" },
+            { "iPhone9,4", "iPhone 7 Plus" },
+		
             //iPod Touches
             { "iPod1,1", "iPod Touch 1G" },
             { "iPod2,1", "iPod Touch 2G" },
@@ -52,6 +57,10 @@ namespace imobileDeviceiDevice
             { "iPad4,3", "iPad Air" },
             { "iPad5,3", "iPad Air 2" },
             { "iPad5,4", "iPad Air 2" },
+            { "iPad6,3", "iPad Pro 9.7" },
+            { "iPad6,4", "iPad Pro 9.7" },
+            { "iPad6,7", "iPad Pro 12.9" },
+            { "iPad6,8", "iPad Pro 12.9" },
 
             { "iPad2,5", "iPad Mini 1G" },
             { "iPad2,6", "iPad Mini 1G" },
@@ -62,6 +71,8 @@ namespace imobileDeviceiDevice
             { "iPad4,7", "iPad Mini 3" },
             { "iPad4,8", "iPad Mini 3" },
             { "iPad4,9", "iPad Mini 3" },
+            { "iPad5,1", "iPad Mini 4" },
+            { "iPad5,2", "iPad Mini 4" },
 
             { "AppleTV2,1", "Apple TV 2G" },
             { "AppleTV3,1", "Apple TV 3G" },
