@@ -50,7 +50,7 @@ Thanks!
 
 
 ##Documentation
-Documentation is available on [the github page](http://0xFireball.github.io/MK.MobileDevice)
+Documentation is available on [the github page](http://0xFireball.github.io/MK.MobileDevice/docs)
 
 #Install
 - An **outdated** version of MK.MobileDevice is available on [NuGet](https://www.nuget.org/packages/MK.MobileDevice/) :( Please don't use this.
