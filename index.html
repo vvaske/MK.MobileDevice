@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="MK.MobileDevice : The best iOS device communication library! A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices, written in C#. Supports USB and wireless communication. Built for Windows but can easily be ported to Linux.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>MK.MobileDevice</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/0xFireball/MK.MobileDevice">View on GitHub</a>
+
+          <h1 id="project_title">MK.MobileDevice</h1>
+          <h2 id="project_tagline">The best iOS device communication library! A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices, written in C#. Supports USB and wireless communication. Built for Windows but can easily be ported to Linux.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/0xFireball/MK.MobileDevice/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/0xFireball/MK.MobileDevice/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p><img src="icon.png" width="120" height="120"></p>
+
+<h3>
+<a id="the-best-ios-device-communication-library-absolutely-free-and-open-source-program-your-ios-device-to-do-your-bidding-create-awesome-automation-programs-that-detect-your-iphone-wirelessly" class="anchor" href="#the-best-ios-device-communication-library-absolutely-free-and-open-source-program-your-ios-device-to-do-your-bidding-create-awesome-automation-programs-that-detect-your-iphone-wirelessly" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The best iOS device communication library! Absolutely free and open source! Program your iOS device to do your bidding! Create awesome automation programs that detect your iPhone wirelessly!</h3>
+
+<h1>
+<a id="mkmobiledevice" class="anchor" href="#mkmobiledevice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MK.MobileDevice</h1>
+
+<p>MK.MobileDevice - A powerful, versatile library providing multiple interfaces to access and manipulate iOS devices over USB and WiFi (using both Apple drivers and custom drivers for Linux recompiled for Windows) written in C#. (Still being actively developed)</p>
+
+<ul>
+<li>Yes, it's open-source, licensed under the <code>GPLv3</code>; please see <code>LICENSE</code> for more information.</li>
+<li>It's GPL because there are too many closed source programs (iMazing, iExplorer, Syncios, etc.) that have similar functionality. I wanted an open community library and some open source tools.</li>
+</ul>
+
+<h2>
+<a id="announcements" class="anchor" href="#announcements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Announcements</h2>
+
+<ul>
+<li>
+<strong>iOS 10 ready!</strong> - As soon as the new iPhones are released, support will be added for them too! Right now, all devices from the very first iPad/iPhone to the iPad Pros and 6s are supported!</li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<p>Use a <strong>Simple, concise API</strong> to do all kinds of cool things with your iDevice, over a USB cable or <strong>wirelessly</strong> (with iTunes WiFi Sync). You can use it as a sort of remote-control iTunes or something. Make your device do your bidding with <strong>MK.MobileDevice</strong>!</p>
+
+<p>Here is a short list containing SOME (there are a LOT more features) of the many features of this library</p>
+
+<ul>
+<li>
+<strong>Full AFC access in the <code>/private/var/mobile/Media</code> directory</strong> - transfer files back and forth!</li>
+<li>Full developer disk image support and mounting (EVEN ON WINDOWS/Linux!!!!)</li>
+<li>Take screenshots remotely! (you must mount developer disk first)</li>
+<li>Connect to device - USB and even <strong>Wirelessly</strong>!!!</li>
+<li><strong>Remotely reboot, shut down, enter/exit recovery mode!</strong></li>
+<li>Manage iCloud activation lock!</li>
+<li>Activate a <a href="https://0xfireball.github.io/MK.MobileDevice/html/9b17a6a7-9c58-c770-230c-5981aeca32f6.htm">hidden Semi-Sleep/Lock state</a> (not yet tested on iOS 10, but it may work!)</li>
+<li>Manage Applications (Install, Uninstall, Archive, Restore, Remove Archives, etc...)</li>
+<li>Manage home screen layout (extract layouts, send layouts)!</li>
+<li>Rename device name!</li>
+<li>Full GasGauge battery diagnostics!</li>
+<li>Extract metadata such as phone number, UDID, IMEI, etc.</li>
+<li>Query apple property services for information like iCloud activation, etc.</li>
+<li><p>And lots more! If there's anything important I didn't mention here, let me know!</p></li>
+<li><p>Some of the APIs require certain components protected by Apple's EULA, so please install iTunes, or at least Apple Mobile Device Support and Apple Application Support. I do not believe I am allowed to redistribute them.</p></li>
+</ul>
+
+<h1>
+<a id="planned-features" class="anchor" href="#planned-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Planned features!</h1>
+
+<ul>
+<li>SSH Access (with Jailbreak)</li>
+<li>Device port forwarding!</li>
+</ul>
+
+<h1>
+<a id="get-started" class="anchor" href="#get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#install">Get Started</a>
+</h1>
+
+<p>Driver DLLs for both 32-bit and 64-bit Windows are included, and you can build your very own set of native DLLs from the <a href="https://github.com/exaphaser/libimobiledevice-win64">libimobiledevice-win64</a> project.</p>
+
+<h2>
+<a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h2>
+
+<p><strong>Yes, I am willing to provide support, **but only as time permits</strong>. Please post your question/issue in <a href="https://github.com/exaphaser/MK.MobileDevice/issues">Issues</a>**</p>
+
+<p>Thanks!</p>
+
+<h1>
+<a id="getting-set-up-see-install" class="anchor" href="#getting-set-up-see-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting set up <a href="#install">See Install</a>
+</h1>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>Documentation is available on <a href="http://0xFireball.github.io/MK.MobileDevice/docs">the github page</a></p>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h1>
+
+<ul>
+<li>An <strong>outdated</strong> version of MK.MobileDevice is available on <a href="https://www.nuget.org/packages/MK.MobileDevice/">NuGet</a> :( Please don't use this.</li>
+<li>I recommend either <strong>cloning the repository</strong> (<a href="https://help.github.com/articles/cloning-a-repository/">how</a>) or <strong>downloading the artifacts from <a href="https://ci.appveyor.com/project/0xFireball/mk-mobiledevice">AppVeyor</a>.</strong>
+</li>
+</ul>
+
+<h2>
+<a id="once-you-have-obtained-a-copy-proceed-to-the-wiki-for-more-information" class="anchor" href="#once-you-have-obtained-a-copy-proceed-to-the-wiki-for-more-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Once you have obtained a copy, proceed to the <a href="https://github.com/exaphaser/MK.MobileDevice/wiki">Wiki</a> for more information.</h2>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">MK.MobileDevice maintained by <a href="https://github.com/0xFireball">0xFireball</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
