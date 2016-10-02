@@ -10,6 +10,8 @@ MK.MobileDevice - A powerful, versatile library providing multiple interfaces to
 
 ## Announcements
 - **iOS 10 ready!** - As soon as the new iPhones are released, support will be added for them too! Right now, all devices from the very first iPad/iPhone to the iPad Pros and 6s are supported!
+- **ATTENTION!** - A bug has been reported with connecting to some iOS 10 devices, this is because of an update to the GNUTLS version.
+MK.MobileDevice will be updated soon.
 
 ## Features
 Use a **Simple, concise API** to do all kinds of cool things with your iDevice, over a USB cable or **wirelessly** (with iTunes WiFi Sync). You can use it as a sort of remote-control iTunes or something. Make your device do your bidding with **MK.MobileDevice**!
