@@ -1,3 +1,14 @@
+**Update** - End of support
+
+Due to my increasing frustration with Apple, this project will no longer be actively developed or maintained. I now use an Android device, and will never go back to iOS. Everything that currently works should keep on working fine, and iTMD APIs should be compatible with all iOS in the foreseeable future, as they use iTunes libraries. Unfortunately, Apple doesn't care about is users, and they probably wouldn't think twice before making breaking changes to the API...
+
+Don't lose hope yet! The version of LibiMD I had been using was https://github.com/exaphaser/libimobiledevice-win64, and you can try to merge the changes from the official repo and compile, then continue using MK.MobileDevice, as it binds to LibiMD's API.
+
+
+
+
+
+
 <img src="https://raw.githubusercontent.com/0xFireball/MK.MobileDevice/master/icon.png" width="120" height="120" />
 ### The best iOS device communication library! Absolutely free and open source! Program your iOS device to do your bidding! Create awesome automation programs that detect your iPhone wirelessly!
 
@@ -7,11 +18,6 @@ MK.MobileDevice - A powerful, versatile library providing multiple interfaces to
 
 - Yes, it's open-source, licensed under the `GPLv3`; please see `LICENSE` for more information.
 - It's GPL because there are too many closed source programs (iMazing, iExplorer, Syncios, etc.) that have similar functionality. I wanted an open community library and some open source tools.
-
-## Announcements
-- **iOS 10 ready!** - As soon as the new iPhones are released, support will be added for them too! Right now, all devices from the very first iPad/iPhone to the iPad Pros and 6s are supported!
-- **ATTENTION!** - A bug has been reported with connecting to some iOS 10 devices, this is because of an update to the GNUTLS version.
-MK.MobileDevice will be updated soon.
 
 ## Features
 Use a **Simple, concise API** to do all kinds of cool things with your iDevice, over a USB cable or **wirelessly** (with iTunes WiFi Sync). You can use it as a sort of remote-control iTunes or something. Make your device do your bidding with **MK.MobileDevice**!
