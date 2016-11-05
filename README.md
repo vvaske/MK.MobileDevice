@@ -48,14 +48,7 @@ Here is a short list containing SOME (there are a LOT more features) of the many
 
 Driver DLLs for both 32-bit and 64-bit Windows are included, and you can build your very own set of native DLLs from the [libimobiledevice-win64](https://github.com/exaphaser/libimobiledevice-win64) project.
 
-## Support
-**Yes, I am willing to provide support, **but only as time permits**. Please post your question/issue in [Issues](https://github.com/exaphaser/MK.MobileDevice/issues)**
-
-Thanks!
-
 # Getting set up [See Install](#install)
-
-
 
 ##Documentation
 Documentation is available on [the github page](http://0xFireball.github.io/MK.MobileDevice/docs)
