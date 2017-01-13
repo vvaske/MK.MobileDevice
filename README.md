@@ -4,9 +4,9 @@ Due to my increasing frustration with Apple, this project will no longer be acti
 
 Don't lose hope yet! The version of LibiMD I had been using was https://github.com/exaphaser/libimobiledevice-win64, and you can try to merge the changes from the official repo and compile, then continue using MK.MobileDevice, as it binds to LibiMD's API.
 
-
-
-
+**It's free but there's no support. Use it as you like, but don't email me asking for support. Instead, look through the sample
+code and the LibIMobileDevice source code, and try to diagnose any problems yourself. For samples, there is a sample project
+included.**
 
 
 <img src="https://raw.githubusercontent.com/0xFireball/MK.MobileDevice/master/icon.png" width="120" height="120" />
