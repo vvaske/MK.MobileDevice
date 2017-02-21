@@ -988,7 +988,9 @@ namespace MK.MobileDevice
             IntPtr lockdownClient;
             IntPtr afcC;
             var afce = AFC.afc_client_start_service(currDevice, out afcC, "MK-iMD");
-            return AFC.copyToDisk(afcC, deviceFile, computerFile) == AFC.AFCError.AFC_E_SUCCESS;
+            var result = AFC.copyToDisk(afcC, deviceFile, computerFile);
+	        var clientCloseResult = AFC.afc_client_free(afcC);
+	        return result == AFC.AFCError.AFC_E_SUCCESS;
         }
 
         public void DeleteDirectory(string path, bool recursive)
