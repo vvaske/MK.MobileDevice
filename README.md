@@ -1,13 +1,15 @@
-**Update** - End of support
+
+## **Update** - End of support
 
 Due to my increasing frustration with Apple, this project will no longer be actively developed or maintained. I now use an Android device, and will never go back to iOS. Everything that currently works should keep on working fine, and iTMD APIs should be compatible with all iOS in the foreseeable future, as they use iTunes libraries. Unfortunately, Apple doesn't care about is users, and they probably wouldn't think twice before making breaking changes to the API...
 
 Don't lose hope yet! The version of LibiMD I had been using was https://github.com/exaphaser/libimobiledevice-win64, and you can try to merge the changes from the official repo and compile, then continue using MK.MobileDevice, as it binds to LibiMD's API.
 
-**It's free but there's no support. Use it as you like, but don't email me asking for support. Instead, look through the sample
+**It's free but there's no support. Use it as you like (within the GPLv3), but don't email me asking for support. Instead, look through the sample
 code and the LibIMobileDevice source code, and try to diagnose any problems yourself. For samples, there is a sample project
 included.**
 
+## **If you want to waive the GPLv3's restrictions and use `MK.MobileDevice` in your commercial application, please consider [purchasing a license](https://exaphaser.binpress.com/product/mkmobiledevice/3765) to support this project and my future open source work. Thanks!
 
 <img src="https://raw.githubusercontent.com/0xFireball/MK.MobileDevice/master/icon.png" width="120" height="120" />
 ### The best iOS device communication library! Absolutely free and open source! Program your iOS device to do your bidding! Create awesome automation programs that detect your iPhone wirelessly!
