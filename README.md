@@ -1,10 +1,4 @@
 
-## **Update** - End of support
-
-Due to my increasing frustration with Apple, this project will no longer be actively developed or maintained. I now use an Android device, and will never go back to iOS. Everything that currently works should keep on working fine, and iTMD APIs should be compatible with all iOS in the foreseeable future, as they use iTunes libraries. Unfortunately, Apple doesn't care about is users, and they probably wouldn't think twice before making breaking changes to the API...
-
-Don't lose hope yet! The version of LibiMD I had been using was https://github.com/exaphaser/libimobiledevice-win64, and you can try to merge the changes from the official repo and compile, then continue using MK.MobileDevice, as it binds to LibiMD's API.
-
 **It's free but there's no support. Use it as you like (within the GPLv3), but don't email me asking for support. Instead, look through the sample
 code and the LibIMobileDevice source code, and try to diagnose any problems yourself. For samples, there is a sample project
 included.**
@@ -46,17 +40,6 @@ Here is a short list containing SOME (there are a LOT more features) of the many
 - SSH Access (with Jailbreak)
 - Device port forwarding!
 
-# [Get Started](#install)
-
-Driver DLLs for both 32-bit and 64-bit Windows are included, and you can build your very own set of native DLLs from the [libimobiledevice-win64](https://github.com/exaphaser/libimobiledevice-win64) project.
-
-# Getting set up [See Install](#install)
-
 ##Documentation
 Documentation is available on [the github page](http://0xFireball.github.io/MK.MobileDevice/docs)
 
-#Install
-- An **outdated** version of MK.MobileDevice is available on [NuGet](https://www.nuget.org/packages/MK.MobileDevice/) :( Please don't use this.
-- I recommend either **cloning the repository** ([how](https://help.github.com/articles/cloning-a-repository/)) or **downloading the artifacts from [AppVeyor](https://ci.appveyor.com/project/0xFireball/mk-mobiledevice).**
-
-## Once you have obtained a copy, proceed to the [Wiki](https://github.com/exaphaser/MK.MobileDevice/wiki) for more information.
